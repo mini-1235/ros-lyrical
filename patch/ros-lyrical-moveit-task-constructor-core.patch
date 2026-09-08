@@ -65,6 +65,14 @@ index 82e9875..147aa7b 100644
  	${moveit_core_TARGETS}
  	${moveit_ros_planning_TARGETS}
  	${moveit_ros_planning_interface_TARGETS}
+diff --git a/src/container.cpp b/src/container.cpp
+index 5bf4648..5f1ec0b 100644
+--- a/src/container.cpp
++++ b/src/container.cpp
+@@ -60,2 +60 @@ namespace task_constructor {
+-__attribute__((unused))  // silent unused-function warning
+-static void printChildrenInterfaces(const ContainerBasePrivate& container, bool success, const Stage& creator,
++[[maybe_unused]] static void printChildrenInterfaces(const ContainerBasePrivate& container, bool success, const Stage& creator,
 diff --git a/src/introspection.cpp b/src/introspection.cpp
 index c045a6c..e6990e4 100644
 --- a/src/introspection.cpp
