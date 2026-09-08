@@ -1,0 +1,6 @@
+tests:
+  # Regression test for https://github.com/RoboStack/ros-kilted/issues/76
+  - script:
+    - if: linux
+      then:
+        - resolved_symbols="$(ldd -r ${PREFIX}/lib/libunique_identifier_msgs__rosidl_generator_py.so 2>&1)"; printf '%s\n' "${resolved_symbols}"; ! printf '%s\n' "${resolved_symbols}" | grep -q 'undefined symbol'
