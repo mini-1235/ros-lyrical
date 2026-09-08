@@ -65,6 +65,11 @@ index 82e9875..147aa7b 100644
  	${moveit_core_TARGETS}
  	${moveit_ros_planning_TARGETS}
  	${moveit_ros_planning_interface_TARGETS}
++@@ -49,0 +50,4 @@ target_link_libraries(${PROJECT_NAME}
+++if(WIN32)
+++	target_link_libraries(${PROJECT_NAME} PRIVATE ws2_32)
+++endif()
+++
 diff --git a/src/container.cpp b/src/container.cpp
 index 5bf4648..5f1ec0b 100644
 --- a/src/container.cpp
