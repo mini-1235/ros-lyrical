@@ -177,3 +177,5 @@ zenoh_cpp_vendor:
 # Remove all lines after this one on new full rebuild
 unique_identifier_msgs:
   build_number: 23
+rosidl_generator_py:
+  build_number: 23
