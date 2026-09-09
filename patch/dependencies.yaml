@@ -95,8 +95,7 @@ backward_ros:
   add_host: ["${{ 'binutils' if linux }}", "${{ 'elfutils' if linux }}", "ros-lyrical-ament-cmake-libraries"]
 nav2_smac_planner:
   add_build: ["${{ 'llvm-openmp' if osx }}"]
-  # omplConfig.cmake exports Boost as a dependency.
-  add_host: ["${{ 'llvm-openmp' if osx }}", "ompl", "libode", "libboost-devel"]
+  add_host: ["${{ 'llvm-openmp' if osx }}", "ompl", "libode"]
 nav2_rviz_plugins:
   # Qt 6 provides its StateMachine component through the qt6-scxml package.
   add_host: ["qt6-scxml"]

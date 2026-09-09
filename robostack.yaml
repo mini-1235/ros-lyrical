@@ -1175,7 +1175,7 @@ unzip:
 uuid:
   robostack:
     linux: [libuuid]
-    osx: [libuuid]
+    osx: []
     win64: []
 virtualenv:
   robostack: [virtualenv]
