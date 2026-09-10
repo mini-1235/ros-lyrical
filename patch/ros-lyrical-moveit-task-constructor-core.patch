@@ -39,6 +39,18 @@ index 26c86ac..22bf5e1 100644
  
  # install libs
  install(TARGETS ${PROJECT_NAME}_python_tools
+diff --git a/python/bindings/src/properties.cpp b/python/bindings/src/properties.cpp
+--- a/python/bindings/src/properties.cpp
++++ b/python/bindings/src/properties.cpp
+@@ -158,7 +158,7 @@ bool PropertyConverterBase::insert(const std::type_index& type_index, const std:
+ 	return REGISTRY_SINGLETON.insert(type_index, ros_msg_name, to, from);
+ }
+ 
+-__attribute__((visibility("default")))  // export this symbol as visible in the shared library
++PYBIND11_EXPORT  // export this symbol as visible in the shared library
+ void export_properties(py::module& m) {
+ 	// clang-format off
+ 	py::classh<Property>(m, "Property", "Holds an arbitrarily typed value and a default value")
 diff --git a/python/bindings/src/solvers.cpp b/python/bindings/src/solvers.cpp
 index eebfa2e..35acc77 100644
 --- a/python/bindings/src/solvers.cpp
@@ -56,7 +68,7 @@ diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
 index 82e9875..147aa7b 100644
 --- a/src/CMakeLists.txt
 +++ b/src/CMakeLists.txt
-@@ -38,7 +38,7 @@ add_library(${PROJECT_NAME} SHARED
+@@ -38,15 +38,18 @@ add_library(${PROJECT_NAME} SHARED
  	solvers/multi_planner.cpp
  )
  target_link_libraries(${PROJECT_NAME}
@@ -65,11 +77,17 @@ index 82e9875..147aa7b 100644
  	${moveit_core_TARGETS}
  	${moveit_ros_planning_TARGETS}
  	${moveit_ros_planning_interface_TARGETS}
-+@@ -49,0 +50,4 @@ target_link_libraries(${PROJECT_NAME}
-++if(WIN32)
-++	target_link_libraries(${PROJECT_NAME} PRIVATE ws2_32)
-++endif()
-++
+ 	${rviz_marker_tools_TARGETS}
+ 	${geometry_msgs_TARGETS}
+ 	${moveit_task_constructor_msgs_TARGETS}
+ 	${visualization_msgs_TARGETS}
+ )
++if(WIN32)
++	target_link_libraries(${PROJECT_NAME} ws2_32)
++endif()
+ target_include_directories(${PROJECT_NAME}
+ 	PUBLIC $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
+ 	       $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
 diff --git a/src/container.cpp b/src/container.cpp
 index 5bf4648..5f1ec0b 100644
 --- a/src/container.cpp
